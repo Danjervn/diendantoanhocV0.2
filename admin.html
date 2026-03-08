@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Quản trị - Diễn đàn Toán học</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+            <span>DIỄN ĐÀN TOÁN HỌC</span>
+        </a>
+    </div>
+
+     
+</header>
+
+<nav class="menu">
+    <a href="index.html">TRANG CHỦ</a>
+    <a href="algebra.html">ĐẠI SỐ</a>
+    <a href="geometry.html">HÌNH HỌC</a>
+    <a href="calculus.html">GIẢI TÍCH</a>
+    <a href="admin.html">ĐÓNG GÓP Ý KIẾN & ĐĂNG BÀI</a>
+</nav>
+
+
+<div class="container">
+    <label>Chủ đề</label><br>
+<select id="category">
+    <option value="calculus">Giải tích</option>
+    <option value="geometry">Hình học</option>
+    <option value="algebra">Đại số</option>
+</select><br><br>
+
+
+    <!-- phần trong <body> tại chỗ form đăng bài -->
+<h2>Đăng bài mới (Admin)</h2>
+
+<form id="post-form" onsubmit="event.preventDefault(); addPost();">
+    <label>Tiêu đề</label><br>
+    <input type="text" id="title"><br>
+
+    <label>Tác giả</label><br>
+    <input type="text" id="author"><br>
+
+    <label>Nội dung chính</label><br>
+    <select id="category">
+        <option value="calculus">Đạo hàm & Nguyên Hàm</option>
+        <option value="geometry">Oxyx & Talet</option>
+        <option value="algebra">Xác suất & Đại số cơ bản</option>
+    </select><br>
+
+    <label>Nội dung</label><br>
+    <textarea id="content"></textarea><br>
+
+    <label>Ảnh minh họa (tùy chọn, có thể chọn nhiều ảnh, .jpg .png .gif, mỗi ảnh ≤ 1MB)</label><br>
+<input type="file" id="image" accept="image/*" multiple><br><br>
+
+
+    <button type="submit">Đăng bài</button>
+</form>
+
+
+    <hr>
+
+    <h2>Danh sách bài viết</h2>
+    <div id="admin-post-list"></div>
+
+</div>
+
+<footer>
+    © Diễn đàn Toán học
+</footer>
+    <script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.js"></script>
+<script src="supabaseClient.js"></script>
+<script src="admin.js"></script>
+
+<!-- AI Chatbot Container -->
+<div id="chatbot-container" class="chatbot-container">
+  <div class="chat-header">
+    <div class="header-content">
+      <h3>🤖 Trợ lý Toán học Gemini</h3>
+      <span class="status">Gemini • Server-side</span>
+    </div>
+    <div class="header-actions">
+      <button id="clear-btn" title="Xóa lịch sử" onclick="window.mathChatbot?.clearHistory()">🔄</button>
+      <button id="close-chat" title="Đóng">✕</button>
+    </div>
+  </div>
+
+  <div id="chat-box" class="chat-box">
+    <div class="message message-bot welcome">
+      <div class="message-content">
+        👋 <strong>Xin chào!</strong> Tôi là trợ lý toán học dùng Gemini.
+        <br>Bạn có thể hỏi bài toán, tải ảnh, tải audio để chép lời, hoặc nhập <strong>tìm web:</strong> để tìm bài tương tự trên mạng.
+      </div>
+    </div>
+  </div>
+
+  <div id="attachment-preview" class="attachment-preview"></div>
+
+  <div class="chat-input-area">
+    <button id="attach-btn" class="icon-btn" title="Đính kèm ảnh/audio/file">📎</button>
+    <input type="file" id="file-upload" accept="image/*,audio/*,.docx,.txt,.mp3,.wav,.m4a,.ogg,.webm" style="display: none;" />
+
+    <button id="voice-btn" class="icon-btn" title="Ghi âm giọng nói">🎤</button>
+
+    <input type="text" id="chat-input" placeholder="Nhập câu hỏi hoặc dùng: tìm web: ..." autocomplete="off" />
+    <button id="send-btn" title="Gửi tin nhắn">📤</button>
+  </div>
+</div>
+
+<button id="chatbot-toggle" class="chatbot-toggle" onclick="document.getElementById('chatbot-container').style.display = document.getElementById('chatbot-container').style.display === 'none' ? 'flex' : 'none'">
+  💬
+</button>
+
+<link rel="stylesheet" href="chatbot.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="aiChatbot.js"></script>
+
+</body>
+</html>
+
+
+
+

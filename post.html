@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Chi tiết bài viết</title>
+    <link rel="stylesheet" href="style.css">  <!-- CSS chung -->
+    <link rel="stylesheet" href="post.css">   <!-- CSS riêng cho post -->
+</head>
+<body>
+
+<!-- HEADER: giống index nhưng dùng class post-header để post.css can thiệp -->
+<div class="header post-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+            <span>DIỄN ĐÀN TOÁN HỌC</span>
+        </a>
+    </div>
+
+    <div class="menu">
+        <a href="index.html">TRANG CHỦ</a>
+        <a href="algebra.html">ĐẠI SỐ</a>
+        <a href="geometry.html">HÌNH HỌC</a>
+        <a href="calculus.html">GIẢI TÍCH</a>
+    </div>
+</div>
+
+<!-- NỘI DUNG -->
+<div class="container">
+
+    <h2 id="post-title"></h2>
+
+    <p>
+        <b>Tác giả:</b> <span id="post-author"></span><br>
+        <b>Chủ đề:</b> <span id="post-category"></span>
+    </p>
+
+    <hr>
+
+    <div class="post-detail">
+        <!-- ẢNH (nằm trong .post-detail và được style trong post.css) -->
+        <div id="image-container"></div>
+
+        <!-- NỘI DUNG -->
+        <div id="post-content"></div>
+    </div>
+
+    <hr>
+
+    <!-- FEEDBACK -->
+    <h3>Feedback</h3>
+    <div id="feedback-list"></div>
+
+    <div class="feedback">
+        <input type="text" id="fb-name" placeholder="Tên của bạn">
+        <input type="email" id="fb-email" placeholder="Email (gmail)">
+        <textarea id="fb-content" placeholder="Nội dung feedback"></textarea>
+        <button id="fb-send" onclick="addFeedback()">Gửi feedback</button>
+    </div>
+
+</div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.js"></script>
+<script src="supabaseClient.js"></script>
+<script src="post.js"></script>
+
+<!-- AI Chatbot Container -->
+<div id="chatbot-container" class="chatbot-container">
+  <div class="chat-header">
+    <div class="header-content">
+      <h3>🤖 Trợ lý Toán học Gemini</h3>
+      <span class="status">Gemini • Server-side</span>
+    </div>
+    <div class="header-actions">
+      <button id="clear-btn" title="Xóa lịch sử" onclick="window.mathChatbot?.clearHistory()">🔄</button>
+      <button id="close-chat" title="Đóng">✕</button>
+    </div>
+  </div>
+
+  <div id="chat-box" class="chat-box">
+    <div class="message message-bot welcome">
+      <div class="message-content">
+        👋 <strong>Xin chào!</strong> Tôi là trợ lý toán học dùng Gemini.
+        <br>Bạn có thể hỏi bài toán, tải ảnh, tải audio để chép lời, hoặc nhập <strong>tìm web:</strong> để tìm bài tương tự trên mạng.
+      </div>
+    </div>
+  </div>
+
+  <div id="attachment-preview" class="attachment-preview"></div>
+
+  <div class="chat-input-area">
+    <button id="attach-btn" class="icon-btn" title="Đính kèm ảnh/audio/file">📎</button>
+    <input type="file" id="file-upload" accept="image/*,audio/*,.docx,.txt,.mp3,.wav,.m4a,.ogg,.webm" style="display: none;" />
+
+    <button id="voice-btn" class="icon-btn" title="Ghi âm giọng nói">🎤</button>
+
+    <input type="text" id="chat-input" placeholder="Nhập câu hỏi hoặc dùng: tìm web: ..." autocomplete="off" />
+    <button id="send-btn" title="Gửi tin nhắn">📤</button>
+  </div>
+</div>
+
+<button id="chatbot-toggle" class="chatbot-toggle" onclick="document.getElementById('chatbot-container').style.display = document.getElementById('chatbot-container').style.display === 'none' ? 'flex' : 'none'">
+  💬
+</button>
+
+<link rel="stylesheet" href="chatbot.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="aiChatbot.js"></script>
+
+</body>
+</html>

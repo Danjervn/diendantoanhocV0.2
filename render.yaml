@@ -1,0 +1,22 @@
+services:
+  - type: static
+    name: diendantoanhoc-frontend
+    env: static
+    branch: main
+    plan: free
+    buildCommand: ""
+    publishPath: "/"
+
+  - type: web
+    name: diendantoanhoc-backend
+    env: node
+    branch: main
+    plan: free
+    rootDirectory: backend
+    buildCommand: "npm ci"
+    startCommand: "npm start"
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: "production"
+      # Không đặt DATABASE_URL ở đây nếu là secret; set nó trong Dashboard sau khi tạo service

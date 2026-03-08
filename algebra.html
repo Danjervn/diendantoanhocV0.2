@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Đại số</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+            <span>DIỄN ĐÀN TOÁN HỌC</span>
+        </a>
+    </div>
+
+     
+</header>
+
+<nav class="menu">
+    <a href="index.html">TRANG CHỦ</a>
+    <a href="algebra.html">ĐẠI SỐ</a>
+    <a href="geometry.html">HÌNH HỌC</a>
+    <a href="calculus.html">GIẢI TÍCH</a>
+    <a href="admin.html">ĐÓNG GÓP Ý KIẾN & ĐĂNG BÀI</a>
+</nav>
+
+
+<div class="container">
+    <h2>Bài viết Algebra</h2>
+    <div id="post-list"></div>
+</div>
+
+<footer>
+    © Diễn đàn Toán học
+</footer>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.js"></script>
+<script src="supabaseClient.js"></script>
+<script src="app.js"></script>
+<script>
+    showCategory("algebra");
+</script>
+<!-- AI Chatbot Container -->
+<div id="chatbot-container" class="chatbot-container">
+  <div class="chat-header">
+    <div class="header-content">
+      <h3>🤖 Trợ lý Toán học Gemini</h3>
+      <span class="status">Gemini • Server-side</span>
+    </div>
+    <div class="header-actions">
+      <button id="clear-btn" title="Xóa lịch sử" onclick="window.mathChatbot?.clearHistory()">🔄</button>
+      <button id="close-chat" title="Đóng">✕</button>
+    </div>
+  </div>
+
+  <div id="chat-box" class="chat-box">
+    <div class="message message-bot welcome">
+      <div class="message-content">
+        👋 <strong>Xin chào!</strong> Tôi là trợ lý toán học. 
+        <br>Bạn có câu hỏi gì về toán học không?
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+  <button id="attach-btn" title="Đính kèm ảnh/audio/file">📎</button>
+  <input type="file" id="file-upload" accept="image/*,audio/*,.docx,.txt,.mp3,.wav,.m4a,.ogg,.webm" style="display: none;" />
+  
+  <button id="voice-btn" title="Ghi âm giọng nói">🎤</button>
+  
+  <input type="text" id="chat-input" placeholder="Nhập câu hỏi..." autocomplete="off" />
+  <button id="send-btn">📤</button>
+</div>
+</div>
+
+<!-- Button để mở/đóng chatbox -->
+<button id="chatbot-toggle" class="chatbot-toggle" onclick="document.getElementById('chatbot-container').style.display = document.getElementById('chatbot-container').style.display === 'none' ? 'flex' : 'none'">
+  💬
+</button>
+
+<!-- CSS Chatbot -->
+<link rel="stylesheet" href="chatbot.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<!-- JS Chatbot -->
+<script src="aiChatbot.js"></script>
+</body>
+</html>
+
+
+
+
+

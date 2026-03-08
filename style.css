@@ -1,0 +1,160 @@
+/* ===== THIẾT LẬP CHUNG ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* ===== HEADER TRÊN ===== */
+.top-header {
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    height: 50px;
+}
+
+.logo {
+    float: left;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #0a4b78;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.logo span {
+    margin-left: 100px;
+    vertical-align: middle;
+}
+
+/* ICON TÌM KIẾM */
+.search {
+    float: right;
+    font-size: 20px;
+    color: #0a4b78;
+    cursor: pointer;
+}
+
+/* XÓA FLOAT */
+.top-header::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* ===== MENU NGANG ===== */
+.menu {
+    background-color: #0a5c8f;
+    padding: 10px 20px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    margin-right: 25px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+/* ===== KHUNG NỘI DUNG ===== */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+/* ===== BÀI VIẾT ===== */
+.post {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.post-title a {
+    text-decoration: none;
+    color: #0a4b78;
+}
+
+.post-title a:hover {
+    text-decoration: underline;
+}
+
+.post-info {
+    font-size: 13px;
+    color: gray;
+}
+
+/* ===== FORM ===== */
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    height: 120px;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #0a5c8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #083f63;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #0a5c8f;
+    color: white;
+    text-align: center;
+    padding: 100px;
+    margin-top: 200px;
+}
+/* ===== POST DETAIL ===== */
+#image-container {
+    text-align: center;
+    margin: 15px 0;
+}
+
+#image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 4px;
+    background-color: #fff;
+}
+
+/* Nội dung bài viết */
+#post-content {
+    line-height: 1.6;
+    word-wrap: break-word;
+}

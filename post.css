@@ -1,0 +1,144 @@
+/* ===== post.css: CHỈ NẠP TRONG post.html ===== */
+
+/* Scope: header riêng cho post (không đụng header index) */
+.post-header {
+    background-color: #0a5c8f;
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+/* LOGO trong header post */
+.post-header .logo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.post-header .logo img {
+    height: 44px;            /* lớn hơn chút cho post */
+    vertical-align: middle;
+}
+
+.post-header .logo span {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* MENU trong header post */
+.post-header .menu {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 40px;
+}
+
+.post-header .menu a {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 20px;
+    line-height: 44px;       /* căn theo chiều dọc với logo */
+}
+
+.post-header .menu a:hover {
+    text-decoration: underline;
+}
+
+/* Container hơi hẹp hơn index để bài và ảnh trông đẹp */
+.container {
+    width: 75%;
+    margin: 18px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* Post title */
+#post-title {
+    color: #0a5c8f;
+    margin-bottom: 6px;
+}
+
+/* Post detail block */
+.post-detail {
+    margin-top: 12px;
+}
+
+/* IMAGE CONTAINER: căn giữa, giới hạn kích thước */
+#image-container {
+    text-align: center;
+    margin: 12px auto;
+    max-width: 620px;        /* khung tối đa cho ảnh */
+}
+
+/* Ảnh: không vượt quá khung, giữ tỉ lệ, giới hạn chiều cao */
+#image-container img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    max-height: 600px;       /* giới hạn chiều cao tránh phá layout */
+    object-fit: contain;
+}
+
+/* Nội dung bài viết */
+#post-content {
+    line-height: 1.6;
+    margin-top: 10px;
+    word-wrap: break-word;
+}
+
+/* FEEDBACK: thu gọn form, hợp với post */
+.feedback {
+    margin-top: 12px;
+}
+
+.feedback input,
+.feedback textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.feedback textarea {
+    min-height: 120px;
+}
+
+.feedback button {
+    padding: 8px 14px;
+    background-color: #0a5c8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Responsive: khi màn hình hẹp, container full */
+@media (max-width: 800px) {
+    .container { width: 95%; padding: 12px; }
+    .post-header .logo img { height: 36px; }
+    .post-header .menu { display: block; margin-left: 0; margin-top: 8px; }
+    .post-header .menu a { line-height: normal; display: inline-block; margin-right: 12px; }
+    #image-container { max-width: 100%; }
+}
+/* nếu image-container có class multiple-images -> chia ảnh */
+#image-container.multiple-images img {
+    max-width: 48%;
+    margin: 6px 1%;
+    height: auto;
+    display: inline-block;
+    vertical-align: top;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* nếu chỉ 1 ảnh (không có class) thì full width */
+#image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 12px;
+}
+

@@ -1,0 +1,14 @@
+{
+  "name": "diendantoanhoc-v0-1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@google/genai": "latest"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
