@@ -1,43 +1,37 @@
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+import { getClient, getTextFromResponse, json, MODEL_TEXT } from "./_shared.js";
 
 export async function POST(request) {
   try {
+    const ai = getClient();
     const { message, history = [] } = await request.json();
 
-    const historyText = history
-      .slice(-10)
-      .map((m) => `${m.role === "assistant" ? "AI" : "Người dùng"}: ${m.content}`)
-      .join("\n");
+    const compactHistory = Array.isArray(history)
+      ? history.slice(-8).map((item) => ({
+          role: item?.role === "assistant" ? "model" : "user",
+          parts: [{ text: String(item?.content || "") }]
+        }))
+      : [];
 
-    const prompt = `
-Bạn là trợ lý AI cho website diễn đàn toán học.
-Yêu cầu:
-- Luôn trả lời bằng tiếng Việt.
-- Nếu là bài toán, giải từng bước rõ ràng.
-- Nếu người dùng yêu cầu soạn thảo, hãy viết mạch lạc, gọn, đúng chính tả.
-- Nếu không chắc, nói rõ là chưa chắc.
+    const contents = [
+      ...compactHistory,
+      {
+        role: "user",
+        parts: [
+          {
+            text: `Bạn là trợ lý AI cho diễn đàn toán học.\n
+Yêu cầu bắt buộc:\n- Luôn trả lời bằng tiếng Việt.\n- Nếu là bài toán, trình bày từng bước rõ ràng.\n- Nếu người dùng yêu cầu soạn thảo văn bản, hãy viết mạch lạc, đúng chính tả, đúng ngữ cảnh.\n- Nếu thông tin chưa chắc chắn, nói rõ điều đó.\n- Ưu tiên giải thích dễ hiểu cho học sinh/sinh viên.\n\nYêu cầu của người dùng:\n${String(message || "")}`
+          }
+        ]
+      }
+    ];
 
-Lịch sử:
-${historyText || "(trống)"}
-
-Yêu cầu mới:
-${message}
-`;
-
-    const result = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: prompt,
+    const response = await ai.models.generateContent({
+      model: MODEL_TEXT,
+      contents
     });
 
-    return Response.json({ text: result.text });
+    return json({ text: getTextFromResponse(response) });
   } catch (error) {
-    return Response.json(
-      { error: error.message || "Lỗi chat AI" },
-      { status: 500 }
-    );
+    return json({ error: error?.message || "Lỗi chat AI." }, 500);
   }
 }
